@@ -1,5 +1,5 @@
 # Credo configuration for Reed's body
-# Hydrated from 7Mind backend patterns, adapted for smaller project scale
+# Production-grade quality checks from day one
 
 %{
   configs: [
