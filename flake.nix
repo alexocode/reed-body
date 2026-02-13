@@ -24,11 +24,8 @@
             mkdir -p .nix-mix .nix-hex
 
             # Install hex and rebar if not already installed
-            mix local.hex --force --if-missing
-            mix local.rebar --force --if-missing
-
-            echo "Reed's body - Elixir $(elixir --version | head -1)"
-            echo "Run: mix deps.get && mix sync --dry-run"
+            mix local.hex --force --if-missing >/dev/null 2>&1
+            mix local.rebar --force --if-missing >/dev/null 2>&1
           '';
         };
       }
