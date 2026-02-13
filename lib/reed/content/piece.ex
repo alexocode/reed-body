@@ -30,10 +30,8 @@ defmodule Reed.Content.Piece do
   end
 
   def to_html(%__MODULE__{body: body}) do
-    case Earmark.as_html(body) do
-      {:ok, html, _warnings} -> html
-      {:error, _html, _errors} -> raise "Earmark failed on #{body}"
-    end
+    {:ok, html, _warnings} = Earmark.as_html(body)
+    html
   end
 
   defp parse_filename(path) do

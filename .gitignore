@@ -6,6 +6,9 @@
 erl_crash.dump
 *.beam
 
+# Coverage reports
+/cover/
+
 # Nix
 .nix-mix/
 .nix-hex/

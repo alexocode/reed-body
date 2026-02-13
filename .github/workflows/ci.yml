@@ -44,6 +44,12 @@ jobs:
       - name: Compile
         run: mix compile --warnings-as-errors
 
+      - name: Run tests
+        run: mix test
+
+      - name: Check test coverage
+        run: mix coveralls
+
   quality:
     runs-on: ubuntu-latest
     name: Code Quality

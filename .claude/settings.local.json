@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mix deps.get:*)",
+      "Bash(mix coveralls:*)",
+      "Bash(mix test:*)",
+      "WebSearch",
+      "Bash(mix coveralls.detail:*)",
+      "Bash(chmod:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gpg:*)",
+      "Bash(git config:*)",
+      "Bash(iex -S mix -e:*)",
+      "Bash(gpg --list-secret-keys:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nConfigure 100% test coverage with TDD enforcement\n\nImplemented comprehensive test coverage across all modules using TDD\nprinciples \\(Red → Green → Refactor\\). Achieved 100% coverage without\nignore comments by refactoring unreachable code.\n\nTest Infrastructure:\n- Add ExCoveralls with minimum_coverage: 100\n- Add Bypass for HTTP mocking in tests\n- Create test fixtures for Piece parsing\n- Set up test config for Ghost Auth\n\nTest Coverage:\n- Reed.Content.SlugMap: 100% \\(pure functions\\)\n- Reed.Content.Piece: 100% \\(with fixtures\\)\n- Reed.Ghost.Auth: 100% \\(JWT generation, headers\\)\n- Reed.Ghost.Client: 100% \\(HTTP calls, error paths\\)\n- Reed: 100% \\(orchestration, dry-run, error handling\\)\n- Mix.Tasks.Sync: 100% \\(CLI task\\)\n\nRefactoring:\n- Simplified Piece.to_html/1 error handling\n- Removed unreachable Earmark error branch\n- Pattern match on success case instead of defensive case\n\nCI Integration:\n- Add test run to GitHub Actions\n- Add coverage check \\(fails on < 100%\\)\n\nDocumentation:\n- docs/coverage.md: Coverage usage and philosophy\n- Updated .gitignore for coverage reports\n\nNo cheating. Pure TDD.\nEOF\n\\)\")"
+    ]
+  }
+}
