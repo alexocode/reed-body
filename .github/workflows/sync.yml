@@ -1,0 +1,38 @@
+name: Sync to Ghost
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Pieces/**"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Changed files
+        id: changes
+        run: |
+          FILES=$(git diff --name-only HEAD~1 HEAD -- 'Pieces/*.md')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "any=$([ -n "$FILES" ] && echo true || echo false)" >> $GITHUB_OUTPUT
+
+      - name: Set up Elixir
+        if: steps.changes.outputs.any == 'true'
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27.0"
+          elixir-version: "1.17"
+
+      - name: Deps & sync
+        if: steps.changes.outputs.any == 'true'
+        env:
+          GHOST_URL: ${{ secrets.GHOST_URL }}
+          GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
+        run: |
+          mix deps.get
+          mix sync ${{ steps.changes.outputs.files }}

@@ -1,0 +1,16 @@
+/_build/
+/deps/
+/*.ez
+/doc/
+.fetch
+erl_crash.dump
+*.beam
+
+# Nix
+.nix-mix/
+.nix-hex/
+.direnv/
+
+# Environment
+.env
+.env.local
