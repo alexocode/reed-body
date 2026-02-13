@@ -73,6 +73,14 @@ fetch-html SLUG:
 iex:
     sops exec-env secrets.sops.yaml 'iex -S mix'
 
+# Analyze Lexical structure for all published pieces
+analyze-lexical:
+    sops exec-env secrets.sops.yaml 'mix lexical_analyze'
+
+# Analyze specific piece by partial slug
+analyze-piece PARTIAL:
+    sops exec-env secrets.sops.yaml 'mix lexical_analyze {{PARTIAL}}'
+
 # Run CI checks locally
 ci:
     mix format --check-formatted
