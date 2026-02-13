@@ -30,6 +30,7 @@ defmodule Reed.MixProject do
       {:req, "~> 0.5"},
       {:jose, "~> 1.11"},
       {:earmark, "~> 1.4"},
+      {:yaml_elixir, "~> 2.9"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.18", only: :test},
       {:bypass, "~> 2.1", only: :test}

@@ -28,24 +28,24 @@ format:
 
 # Sync a specific piece to Ghost (with secrets)
 sync FILE:
-    sops exec-env secrets.sops.yaml 'mix sync {{FILE}}'
+    sops exec-env ../secrets.sops.yaml 'mix sync {{FILE}}'
 
 # Sync a piece (dry run)
 sync-dry FILE:
-    sops exec-env secrets.sops.yaml 'mix sync --dry-run {{FILE}}'
+    sops exec-env ../secrets.sops.yaml 'mix sync --dry-run {{FILE}}'
 
 # Sync all pieces in Pieces/ directory
 sync-all:
-    sops exec-env secrets.sops.yaml 'mix sync'
+    sops exec-env ../secrets.sops.yaml 'mix sync'
 
 # Sync all pieces (dry run)
 sync-all-dry:
-    sops exec-env secrets.sops.yaml 'mix sync --dry-run'
+    sops exec-env ../secrets.sops.yaml 'mix sync --dry-run'
 
 # Fetch a piece from Ghost by slug
 fetch-piece SLUG:
     #!/usr/bin/env bash
-    sops exec-env secrets.sops.yaml bash -c ' \
+    sops exec-env ../secrets.sops.yaml bash -c ' \
       curl -s \
         -H "Authorization: Ghost $(mix run -e \"IO.puts Reed.Ghost.Auth.token()\")" \
         "${GHOST_API_BASE_URL}/ghost/api/admin/posts/slug/{{SLUG}}/?formats=lexical" \
@@ -54,7 +54,7 @@ fetch-piece SLUG:
 # Fetch piece Lexical JSON
 fetch-lexical SLUG:
     #!/usr/bin/env bash
-    sops exec-env secrets.sops.yaml bash -c ' \
+    sops exec-env ../secrets.sops.yaml bash -c ' \
       curl -s \
         -H "Authorization: Ghost $(mix run -e \"IO.puts Reed.Ghost.Auth.token()\")" \
         "${GHOST_API_BASE_URL}/ghost/api/admin/posts/slug/{{SLUG}}/?formats=lexical" \
@@ -63,7 +63,7 @@ fetch-lexical SLUG:
 # Fetch piece rendered HTML
 fetch-html SLUG:
     #!/usr/bin/env bash
-    sops exec-env secrets.sops.yaml bash -c ' \
+    sops exec-env ../secrets.sops.yaml bash -c ' \
       curl -s \
         -H "Authorization: Ghost $(mix run -e \"IO.puts Reed.Ghost.Auth.token()\")" \
         "${GHOST_API_BASE_URL}/ghost/api/admin/posts/slug/{{SLUG}}/?formats=html" \
@@ -71,15 +71,15 @@ fetch-html SLUG:
 
 # Start IEx with secrets loaded
 iex:
-    sops exec-env secrets.sops.yaml 'iex -S mix'
+    sops exec-env ../secrets.sops.yaml 'iex -S mix'
 
 # Analyze Lexical structure for all published pieces
 analyze-lexical:
-    sops exec-env secrets.sops.yaml 'mix lexical_analyze'
+    sops exec-env ../secrets.sops.yaml 'mix lexical_analyze'
 
 # Analyze specific piece by partial slug
 analyze-piece PARTIAL:
-    sops exec-env secrets.sops.yaml 'mix lexical_analyze {{PARTIAL}}'
+    sops exec-env ../secrets.sops.yaml 'mix lexical_analyze {{PARTIAL}}'
 
 # Run CI checks locally
 ci:
