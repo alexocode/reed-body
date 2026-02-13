@@ -30,7 +30,8 @@
       "Bash(nix eval:*)",
       "Bash(sudo darwin-rebuild:*)",
       "Bash(just analyze-piece:*)",
-      "Bash(just analyze-lexical:*)"
+      "Bash(just analyze-lexical:*)",
+      "Bash(~/.reed/bin/reed:*)"
     ]
   }
 }
