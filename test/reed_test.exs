@@ -12,11 +12,16 @@ defmodule ReedTest do
   describe "sync/2" do
     test "creates new post for piece with slug", %{bypass: bypass} do
       # AI piece has slug in SlugMap
-      Bypass.expect(bypass, "GET", "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/", fn conn ->
-        conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(404, "")
-      end)
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/",
+        fn conn ->
+          conn
+          |> Plug.Conn.put_resp_content_type("application/json")
+          |> Plug.Conn.resp(404, "")
+        end
+      )
 
       Bypass.expect(bypass, "POST", "/ghost/api/admin/posts/", fn conn ->
         conn
@@ -42,11 +47,16 @@ defmodule ReedTest do
         "updated_at" => "2024-01-01T00:00:00.000Z"
       }
 
-      Bypass.expect(bypass, "GET", "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/", fn conn ->
-        conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, Jason.encode!(%{"posts" => [post]}))
-      end)
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/",
+        fn conn ->
+          conn
+          |> Plug.Conn.put_resp_content_type("application/json")
+          |> Plug.Conn.resp(200, Jason.encode!(%{"posts" => [post]}))
+        end
+      )
 
       Bypass.expect(bypass, "PUT", "/ghost/api/admin/posts/existing-123/", fn conn ->
         conn
@@ -93,10 +103,15 @@ defmodule ReedTest do
     end
 
     test "handles API errors gracefully", %{bypass: bypass} do
-      Bypass.expect(bypass, "GET", "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/", fn conn ->
-        conn
-        |> Plug.Conn.resp(500, "")
-      end)
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/",
+        fn conn ->
+          conn
+          |> Plug.Conn.resp(500, "")
+        end
+      )
 
       output =
         capture_io(fn ->

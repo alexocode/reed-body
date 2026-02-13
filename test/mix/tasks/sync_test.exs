@@ -24,11 +24,16 @@ defmodule Mix.Tasks.SyncTest do
     end
 
     test "syncs specific files when provided", %{bypass: bypass} do
-      Bypass.expect(bypass, "GET", "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/", fn conn ->
-        conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(404, "")
-      end)
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/ghost/api/admin/posts/slug/ai-did-not-take-your-agency-you-handed-it-over/",
+        fn conn ->
+          conn
+          |> Plug.Conn.put_resp_content_type("application/json")
+          |> Plug.Conn.resp(404, "")
+        end
+      )
 
       Bypass.expect(bypass, "POST", "/ghost/api/admin/posts/", fn conn ->
         conn

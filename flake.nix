@@ -10,12 +10,14 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        elixir = pkgs.beam.packages.erlang_27.elixir_1_18;
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          buildInputs = [
             elixir
-            erlang
+            pkgs.erlang_27
+            pkgs.git
           ];
 
           shellHook = ''
