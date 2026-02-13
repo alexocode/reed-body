@@ -15,9 +15,7 @@ defmodule Reed.Ghost.Client do
   defp api(method, path, opts \\ []) do
     url = "#{base_url()}/ghost/api/admin#{path}"
 
-    Req.request(
-      [{:method, method}, {:url, url}, {:headers, Auth.headers()} | opts]
-    )
+    Req.request([{:method, method}, {:url, url}, {:headers, Auth.headers()} | opts])
   end
 
   def find_by_slug(slug) do
