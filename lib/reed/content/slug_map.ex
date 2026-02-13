@@ -23,7 +23,8 @@ defmodule Reed.Content.SlugMap do
     "Observation" => "becoming-an-observer-of-human-systems",
     "Silence" => "culture-as-vibes-prices-silence-out",
     "TCP over UDP" => nil,
-    "Tech Debt" => "tech-debt-and-encoded-legacy-patterns"
+    "Tech Debt" => "tech-debt-and-encoded-legacy-patterns",
+    "Test Page" => "test-page-reed-body-production"
   }
 
   def lookup(key), do: Map.get(@map, key)

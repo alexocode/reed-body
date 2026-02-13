@@ -17,3 +17,4 @@ erl_crash.dump
 # Environment
 .env
 .env.local
+secrets.sops.yaml
