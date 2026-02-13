@@ -21,7 +21,8 @@ defmodule Reed.MixProject do
     [
       {:req, "~> 0.5"},
       {:jose, "~> 1.11"},
-      {:earmark, "~> 1.4"}
+      {:earmark, "~> 1.4"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 end

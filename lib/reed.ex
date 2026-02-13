@@ -15,21 +15,23 @@ defmodule Reed do
     paths
     |> Enum.map(&Piece.from_file/1)
     |> Enum.reject(&is_nil/1)
-    |> Enum.each(fn piece ->
-      case piece.slug do
-        nil ->
-          IO.puts("  SKIP (no slug): #{piece.path}")
+    |> Enum.each(&sync_one(&1, dry_run))
+  end
 
-        slug ->
-          IO.puts("  #{piece.path} -> /#{slug}/")
+  defp sync_one(piece, dry_run) do
+    case piece.slug do
+      nil ->
+        IO.puts("  SKIP (no slug): #{piece.path}")
 
-          unless dry_run do
-            sync_piece(piece)
-          else
-            IO.puts("    DRY RUN: would sync '#{piece.title}'")
-          end
-      end
-    end)
+      slug ->
+        IO.puts("  #{piece.path} -> /#{slug}/")
+
+        if dry_run do
+          IO.puts("    DRY RUN: would sync '#{piece.title}'")
+        else
+          sync_piece(piece)
+        end
+    end
   end
 
   def sync_all(opts \\ []) do
